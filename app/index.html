@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link href="styles/jquery-ui.min.css" rel="stylesheet" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/switchery/dist/switchery.css" />
+    <link rel="stylesheet" href="bower_components/toaster/toaster.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link href="styles/myBootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="ZupaStats">
+<!-- begin #page-container -->
+<div id="page-container" class="page-sidebar-fixed page-header-fixed">
+<!-- begin #header -->
+<div id="header" class="header navbar navbar-default navbar-fixed-top">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin mobile sidebar expand / collapse button -->
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> {{angular}} Stats {{version}}</a>
+            <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- end mobile sidebar expand / collapse button -->
+        <a class="btn btn-inverse" ng-click="getData()" style="margin-top:10px;">Refresh Data</a>
+        <!-- begin header navigation right -->
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown navbar-user">
+
+                <a href="javascript:;" class="dropdown-toggle" >
+                    <span class="hidden-xs">{{selectedServer.name}}</span></b>
+                </a>
+            </li>
+        </ul>
+        <!-- end header navigation right -->
+    </div>
+    <!-- end container-fluid -->
+</div>
+<!-- end #header -->
+
+<!-- begin #sidebar -->
+<div id="sidebar" class="sidebar">
+<!-- begin sidebar scrollbar -->
+<div data-scrollbar="true" data-height="100%">
+<!-- begin sidebar user -->
+<ul class="nav">
+    <li class="nav-profile">
+        <div class="image">
+            <img src="http://epochmod.com/epoch_logo.png" alt="" />
+        </div>
+        <div class="info">
+            {{angular}}
+            <small>Developments</small>
+        </div>
+    </li>
+</ul>
+<!-- end sidebar user -->
+<!-- begin sidebar nav -->
+<ul class="nav">
+<li class="nav-header">NoobsPlayGround</li>
+
+<li id="servers"><a href="#/"><i class="fa fa-database"></i> <span>Servers</span></a></li>
+
+<li id="kills"><a href="#/kills/"><i class="fa fa-user"></i> <span>Kills</span></a></li>
+
+<li id="weapons"><a href="#/weapons"><i class="fa fa-pie-chart"></i> <span>Weapons </span></a></li>
+
+<li id="players"><a href="#/players"><i class="fa fa-group"></i> <span>Players </span></a></li>
+
+<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+<!-- end sidebar minify button -->
+</ul>
+<!-- end sidebar nav -->
+</div>
+<!-- end sidebar scrollbar -->
+</div>
+
+<!-- end #sidebar -->
+
+<!-- begin #content -->
+    <div id="content" class="content">
+        <div ng-view=""></div>
+    </div>
+</div>
+
+
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
+
+<script src="bower_components/switchery/dist/switchery.min.js"></script>
+<script src="bower_components/ng-switchery/src/ng-switchery.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script src="bower_components/toaster/toaster.js"></script>
+<script src="bower_components/Chart.js/Chart.js"></script>
+<script src="bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/kills.js"></script>
+<script src="scripts/controllers/weapons.js"></script>
+<script src="scripts/controllers/players.js"></script>
+<script src="scripts/controllers/player.js"></script>
+<!-- endbuild -->
+</body>
+</html>

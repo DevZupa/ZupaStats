@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">Player Kills <small> {{$parent.selectedServer.name}} </small></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-inverse" style="margin-bottom:0;">
+            <div class="panel-heading">
+                <form class="form-inline">
+                    <h4 class="panel-title">{{data.length}} Kills
+                        <div class="form-group m-r-10">
+                            <input type="search" class="form-control input-sm" ng-model="search"  placeholder="filter" style="margin-left:10px;">
+                            <input type="number" class="form-control input-sm" ng-model="pageSize"  placeholder="pagesize" style="margin-left:10px;" min="1" max="200">
+                        </div>
+                        <i class="fa fa-spinner fa-2x fa-spin" ng-show="loadingData"></i>  <span ng-show="loadingData">Loading data.</span>
+                    </h4>
+                </form>
+            </div>
+            <div class="alert alert-info fade in">
+                <i class="fa fa-globe fa-2x pull-left"></i>
+                <p>Server is up since 01-01-2015.
+                </p>
+            </div>
+            <div class="panel-body panel-form">
+                <table class="table-striped table">
+                    <tr>
+                        <th>Time</th>
+                        <th>Killer</th>
+                        <th>Puid</th>
+                        <th>Weapon</th>
+                        <th>Killed</th>
+                        <th>Puid</th>
+                    </tr>
+                    <tr dir-paginate="kill in data | filter:search | itemsPerPage: pageSize" current-page="currentPage">
+                        <td>{{kill.time}}</td>
+                        <td>{{kill.killername}}</td>
+                        <td><a ng-click="view(kill.killerpuid)" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killerpuid}}</a></td>
+                        <td>{{kill.weapon}}</td>
+                        <td>{{kill.killedname}}</td>
+                        <td><a ng-click="view(kill.killedpuid)" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killedpuid}}</a></td>
+                    </tr>
+                </table>
+                <div style="margin:auto;text-align: center">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
