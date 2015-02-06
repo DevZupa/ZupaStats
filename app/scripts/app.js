@@ -92,11 +92,11 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
         globalScope.unEpochorize = unEpochorize;
 
         function unEpochorize(data){
-            globalScope.players = [];
-            globalScope.weapons = [];
+            globalScope.players = {};
+            globalScope.weapons = {};
             angular.forEach(data, function (value, key) {
                 if(value.killerpuid != undefined && value.killerpuid != ""){
-                    if(globalScope.players[value.killerpuid] == undefined){
+                    if(!(value.killerpuid in globalScope.players)){
                         globalScope.players[value.killerpuid] = {};
                         globalScope.players[value.killerpuid].names = [];
                         globalScope.players[value.killerpuid].killsData = [];
@@ -110,7 +110,7 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
                     globalScope.players[value.killerpuid].killsData.push(value);
                 }
                 if(value.killedpuid != undefined && value.killedpuid != ""){
-                    if(globalScope.players[value.killedpuid] == undefined){
+                    if(!(value.killedpuid in globalScope.players)){
                         globalScope.players[value.killedpuid] = {};
                         globalScope.players[value.killedpuid].names = [];
                         globalScope.players[value.killedpuid].killsData = [];
@@ -125,18 +125,16 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
                 }else{
                     globalScope.players[value.killerpuid].bots++;
                 }
-                if(value.weapon != undefined && value.weapon != ""){
-                    if(globalScope.weapons[value.weapon] == undefined){
+                if(value.weapon != undefined && value.weapon != "" && value.weapon != " "){
+                    if(!(value.weapon in globalScope.weapons)){
                         globalScope.weapons[value.weapon] = {};
                         globalScope.weapons[value.weapon].name = value.weapon;
                         globalScope.weapons[value.weapon].count = 0;
                     }
                     globalScope.weapons[value.weapon].count++;
-
-
-
+                    
                     if(value.killerpuid != undefined && value.killerpuid !=""){
-                        if(globalScope.players[value.killerpuid].weapons[value.weapon] == undefined){
+                        if(!(value.weapon in globalScope.players[value.killerpuid].weapons)){
                             globalScope.players[value.killerpuid].weapons[value.weapon] = {};
                             globalScope.players[value.killerpuid].weapons[value.weapon].name = value.weapon;
                             globalScope.players[value.killerpuid].weapons[value.weapon].count = 0;
@@ -151,8 +149,13 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
                 globalScope.weapons2.push(value);
             });
 
+            globalScope.players2 = [];
+            angular.forEach(globalScope.players, function (value, key) {
+                globalScope.players2.push(value);
+            });
 
-            alert(JSON.stringify(globalScope.players));
+
+
             globalScope.loadingData = false;
 
         }
