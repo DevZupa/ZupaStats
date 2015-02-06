@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05da0b03-33f1-418a-9af3-bda4c32bbb75" name="Default" comment="" />
+    <list default="true" id="05da0b03-33f1-418a-9af3-bda4c32bbb75" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
+    </list>
     <ignored path="ZupaStats.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -91,7 +93,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="76" selection-start="6145" selection-end="6145" vertical-scroll-proportion="0.5214385" vertical-offset="2054" max-vertical-offset="3910">
+            <state line="103" column="71" selection-start="3697" selection-end="3697" vertical-scroll-proportion="0.4979253" vertical-offset="1391" max-vertical-offset="3910">
               <folding />
             </state>
           </provider>
@@ -443,7 +445,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="76" selection-start="6145" selection-end="6145" vertical-scroll-proportion="0.5214385" vertical-offset="2054" max-vertical-offset="3910">
+        <state line="103" column="71" selection-start="3697" selection-end="3697" vertical-scroll-proportion="0.4979253" vertical-offset="1391" max-vertical-offset="3910">
           <folding />
         </state>
       </provider>

@@ -95,7 +95,7 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
             globalScope.players = [];
             globalScope.weapons = [];
             angular.forEach(data, function (value, key) {
-                if(value.killerpuid != undefined || value.killerpuid != ""){
+                if(value.killerpuid != undefined && value.killerpuid != ""){
                     if(globalScope.players[value.killerpuid] == undefined){
                         globalScope.players[value.killerpuid] = {};
                         globalScope.players[value.killerpuid].names = [];
@@ -109,7 +109,7 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
                     }
                     globalScope.players[value.killerpuid].killsData.push(value);
                 }
-                if(value.killedpuid != undefined || value.killedpuid != ""){
+                if(value.killedpuid != undefined && value.killedpuid != ""){
                     if(globalScope.players[value.killedpuid] == undefined){
                         globalScope.players[value.killedpuid] = {};
                         globalScope.players[value.killedpuid].names = [];
