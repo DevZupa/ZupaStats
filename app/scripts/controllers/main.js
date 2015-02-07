@@ -21,7 +21,8 @@ ERDBM
 
         function selectServer(index){
             RS.selectedServer =  RS.servers[index];
-            changeLoc("/kills");
+            RS.getData();
+            changeLoc("/stats");
         }
 
         function changeLoc(where){

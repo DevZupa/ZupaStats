@@ -30,8 +30,8 @@
                         <th>Weapon Name</th>
                         <th>Kills</th>
                     </tr>
-                    <tr dir-paginate="wep in $parent.weapons2 | filter:search | itemsPerPage: pageSize" current-page="currentPage">
-                        <td>{{$index}}</td>
+                    <tr dir-paginate="wep in $parent.weapons3 | filter:search | itemsPerPage: pageSize" current-page="currentPage">
+                        <td>{{wep.rank}}</td>
                         <td>{{wep.name}}</td>
                         <td>Coming Soon</td>
                         <td>{{wep.count}}</td>

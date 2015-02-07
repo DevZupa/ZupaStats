@@ -35,10 +35,10 @@
                     <tr dir-paginate="kill in data | filter:search | itemsPerPage: pageSize" current-page="currentPage">
                         <td>{{kill.time}}</td>
                         <td>{{kill.killername}}</td>
-                        <td><a ng-click="view(kill.killerpuid)" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killerpuid}}</a></td>
+                        <td><a ng-click="view('{{kill.killerpuid}}')" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killerpuid}}</a></td>
                         <td>{{kill.weapon}}</td>
                         <td>{{kill.killedname}}</td>
-                        <td><a ng-click="view(kill.killedpuid)" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killedpuid}}</a></td>
+                        <td><a ng-click="view('{{kill.killedpuid}}')" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{kill.killedpuid}}</a></td>
                     </tr>
                 </table>
                 <div style="margin:auto;text-align: center">

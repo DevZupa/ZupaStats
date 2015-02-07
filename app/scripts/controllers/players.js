@@ -19,6 +19,9 @@ ERDBM
 
         MC.selectServer = selectServer;
 
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
         function selectServer(index){
             RS.selectedServer =  RS.servers[index];
             changeLoc("/kills");
@@ -28,6 +31,12 @@ ERDBM
             $location.path(where);
         }
 
+        MC.view = view;
+
+        function view(string){
+
+            changeLoc('/player/'+ string);
+        }
 
 
 

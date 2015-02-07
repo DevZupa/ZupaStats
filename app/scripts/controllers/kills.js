@@ -37,8 +37,13 @@ ERDBM
             });
         }
 
-
         MC.changeLoc = changeLoc;
+        MC.view = view;
+
+        function view(string){
+
+            changeLoc('/player/'+ string);
+        }
 
 
 

@@ -7,6 +7,14 @@ header('Access-Control-Allow-Origin: *');
  * Time: 11:06
  */
 
+error_reporting(0);
+ini_set('display_errors',0);
+
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+
+$db = $request -> db;
+
 require 'Predis/Autoloader.php';
 
 require 'config.php';
@@ -17,7 +25,7 @@ $client = new Predis\Client([
     'host'   => "127.0.0.1",
     'password' => "npgforever1991",
 	'port' => 6379,
-	'database' => 1
+	'database' => $db
 ]);
 
 $deathlogs  = $client-> llen('deathlog-LOG');

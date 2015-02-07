@@ -17,6 +17,9 @@ ERDBM
 
         MC.changeLoc = changeLoc;
 
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
         MC.selectServer = selectServer;
 
         function selectServer(index){
