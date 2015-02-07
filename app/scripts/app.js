@@ -132,7 +132,7 @@ ERDBM.run(["$rootScope","storage","$location","$http","Data",
                         globalScope.weapons[value.weapon].count = 0;
                     }
                     globalScope.weapons[value.weapon].count++;
-                    
+
                     if(value.killerpuid != undefined && value.killerpuid !=""){
                         if(!(value.weapon in globalScope.players[value.killerpuid].weapons)){
                             globalScope.players[value.killerpuid].weapons[value.weapon] = {};
