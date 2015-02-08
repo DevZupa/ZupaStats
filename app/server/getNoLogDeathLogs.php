@@ -22,9 +22,9 @@ require 'config.php';
 Predis\Autoloader::register();
 
 $client = new Predis\Client([
-    'host'   => "127.0.0.1",
-    'password' => "npgforever1991",
-	'port' => 6379,
+    'host'   => $myRedisHost ,
+    'password' => $myRedisPass,
+	'port' => $myRedisPort,
 	'database' => $db
 ]);
 
