@@ -386,3 +386,469 @@ ZupaStats.directive('passwordMatch', [function () {
         }
     };
 }]);
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('MainCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
+        $(".nav li").removeClass("active");
+        $("#servers").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.changeLoc = changeLoc;
+
+        MC.selectServer = selectServer;
+
+        function selectServer(index){
+            RS.selectedServer =  RS.servers[index];
+            RS.getData();
+            changeLoc("/stats");
+        }
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+
+
+
+  }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('KillsCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
+        $(".nav li").removeClass("active");
+        $("#kills").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
+        MC.changeLoc = changeLoc;
+        MC.view = view;
+
+        function view(string){
+
+            changeLoc('/player/'+ string);
+        }
+
+
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+
+
+
+  }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('WeaponsCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
+        $(".nav li").removeClass("active");
+        $("#weapons").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.changeLoc = changeLoc;
+
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
+        MC.selectServer = selectServer;
+
+        function selectServer(index){
+            RS.selectedServer =  RS.servers[index];
+            changeLoc("/kills");
+        }
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+
+
+
+  }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('PlayersCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
+        $(".nav li").removeClass("active");
+        $("#players").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.changeLoc = changeLoc;
+
+        MC.selectServer = selectServer;
+
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
+        function selectServer(index){
+            RS.selectedServer =  RS.servers[index];
+            changeLoc("/kills");
+        }
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+        MC.view = view;
+
+        function view(string){
+
+            changeLoc('/player/'+ string);
+        }
+
+
+
+  }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('PlayerCtrl',["$scope","$rootScope","$location","$routeParams", function ($scope,$rootScope,$location,$routeParams) {
+        $(".nav li").removeClass("active");
+        $("#players").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.changeLoc = changeLoc;
+
+        MC.currentPage = 1;
+        MC.pageSize = 20;
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+
+        MC.puid =  $routeParams.param;
+
+        MC.thePlayer = {};
+
+        MC.pkills = [];
+        MC.pDeaths = [];
+
+        MC.pWeapons = [];
+
+        RS.$watch('players4', function() {
+            refreshStats();
+        });
+
+            function refreshStats(){
+
+                    if( MC.puid != undefined &&  MC.puid != "" ){
+
+                        angular.forEach(RS.players4, function (value, key) {
+
+                            if(value.puid == MC.puid){
+                             MC.thePlayer = value;
+                            }
+                        });
+
+                         MC.pkills = MC.thePlayer.killsData;
+                         MC.pDeaths = MC.thePlayer.killedData;
+                        MC.pWeapons = [];
+                        angular.forEach(MC.thePlayer.weapons, function (value, key) {
+                            MC.pWeapons.push(value);
+                        });
+
+                        MC.pWeapons.sort(compareWeaponKills);
+
+                    }
+                    else{
+                        MC.thePlayer.name = "Error player";
+                    }
+            }
+
+
+        function compareWeaponKills(a,b) {
+            if (a.count < b.count)
+                return 1;
+            if (a.count > b.count)
+                return -1;
+            return 0;
+        }
+
+        refreshStats();
+
+  }]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name zepochRedisApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the zepochRedisApp
+ */
+ZupaStats
+  .controller('StatsCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
+        $(".nav li").removeClass("active");
+        $("#stats").addClass("active");
+
+        var MC = $scope;
+        var RS = $rootScope;
+
+        MC.changeLoc = changeLoc;
+
+        MC.selectServer = selectServer;
+
+        function selectServer(index){
+            RS.selectedServer =  RS.servers[index];
+            changeLoc("/kills");
+        }
+
+        function changeLoc(where){
+            $location.path(where);
+        }
+
+        MC.weaponsTop = [];
+        MC.kdrTop = [];
+        MC.killsTop = [];
+        MC.killsTop7 = [];
+        MC.kdTop7 = [];
+
+
+        RS.$watch('players5', function() {
+
+            refreshStats();
+        });
+
+        function refreshStats(){
+
+        MC.tempDate = [];
+
+        var counter = 0
+
+        angular.forEach(RS.weapons3, function (value, key) {
+
+            if( counter < 5) {
+                var stats = {};
+                stats.value = value.count;
+                stats.color = RS.getRandomColor();
+                stats.highlight = "#aaa";
+                stats.label = value.name;
+                MC.tempDate.push(stats);
+                counter++;
+            };
+        });
+
+        MC.weaponsTop = MC.tempDate;
+
+        MC.tempDate = [];
+
+        counter = 0
+
+        angular.forEach(RS.players4, function (value, key) {
+
+            if( counter < 5) {
+                var stats = {};
+                stats.value = value.kd;
+                stats.color = RS.getRandomColor();
+                stats.highlight = "#aaa";
+                stats.label = value.names[0];
+                MC.tempDate.push(stats);
+                counter++;
+            };
+        });
+
+        MC.kdrTop = MC.tempDate;
+
+
+        MC.tempDate = [];
+
+        counter = 0
+
+        angular.forEach(RS.players3, function (value, key) {
+
+            if( counter < 5) {
+                var stats = {};
+                stats.value = value.killsData.length;
+                stats.color = RS.getRandomColor();
+                stats.highlight = "#aaa";
+                stats.label = value.names[0];
+                MC.tempDate.push(stats);
+                counter++;
+            };
+        });
+
+        MC.killsTop = MC.tempDate;
+
+
+            MC.tempDate = [];
+
+            counter = 0
+
+            angular.forEach(RS.players6, function (value, key) {
+
+                if( counter < 5) {
+                    var stats = {};
+                    stats.value = value.killsData7Days.length;
+                    stats.color = RS.getRandomColor();
+                    stats.highlight = "#aaa";
+                    stats.label = value.names[0];
+                    MC.tempDate.push(stats);
+                    counter++;
+                };
+            });
+
+            MC.killsTop7 = MC.tempDate;
+
+            MC.tempDate = [];
+
+            counter = 0
+
+            angular.forEach(RS.players5, function (value, key) {
+
+                if( counter < 5) {
+                    var stats = {};
+                    stats.value = value.kd7;
+                    stats.color = RS.getRandomColor();
+                    stats.highlight = "#aaa";
+                    stats.label = value.names[0];
+                    MC.tempDate.push(stats);
+                    counter++;
+                };
+            });
+
+            MC.kdTop7 = MC.tempDate;
+
+        }
+
+
+
+        $scope.options =  {
+
+            // Sets the chart to be responsive
+            responsive: false,
+
+            //Boolean - Whether we should show a stroke on each segment
+            segmentShowStroke : true,
+
+            //String - The colour of each segment stroke
+            segmentStrokeColor : '#fff',
+
+            //Number - The width of each segment stroke
+            segmentStrokeWidth : 2,
+
+            //Number - The percentage of the chart that we cut out of the middle
+            percentageInnerCutout : 0, // This is 0 for Pie charts
+
+            //Number - Amount of animation steps
+            animationSteps : 100,
+
+            //String - Animation easing effect
+            animationEasing : 'easeOutBounce',
+
+            //Boolean - Whether we animate the rotation of the Doughnut
+            animateRotate : true,
+
+            //Boolean - Whether we animate scaling the Doughnut from the centre
+            animateScale : true,
+
+            //String - A legend template
+            legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+
+        };
+
+        $scope.optionsPolar =  {
+
+            // Sets the chart to be responsive
+            responsive: true,
+
+            //Boolean - Show a backdrop to the scale label
+            scaleShowLabelBackdrop : true,
+
+            //String - The colour of the label backdrop
+            scaleBackdropColor : 'rgba(255,255,255,0.75)',
+
+            // Boolean - Whether the scale should begin at zero
+            scaleBeginAtZero : true,
+
+            //Number - The backdrop padding above & below the label in pixels
+            scaleBackdropPaddingY : 2,
+
+            //Number - The backdrop padding to the side of the label in pixels
+            scaleBackdropPaddingX : 2,
+
+            //Boolean - Show line for each value in the scale
+            scaleShowLine : true,
+
+            //Boolean - Stroke a line around each segment in the chart
+            segmentShowStroke : true,
+
+            //String - The colour of the stroke on each segement.
+            segmentStrokeColor : '#fff',
+
+            //Number - The width of the stroke value in pixels
+            segmentStrokeWidth : 2,
+
+            //Number - Amount of animation steps
+            animationSteps : 100,
+
+            //String - Animation easing effect.
+            animationEasing : 'easeOutBounce',
+
+            //Boolean - Whether to animate the rotation of the chart
+            animateRotate : true,
+
+            //Boolean - Whether to animate scaling the chart from the centre
+            animateScale : false,
+
+            //String - A legend template
+            legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+        };
+
+
+
+  }]);

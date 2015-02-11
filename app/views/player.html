@@ -21,7 +21,7 @@
                         Name History
                     </a>
                     <a class="list-group-item list-group-item-inverse text-ellipsis" ng-repeat="name in thePlayer.names">
-{{name}}
+                    {{name}}
                         </a>
 
                 </div>
@@ -33,7 +33,7 @@
                         <a class="list-group-item list-group-item-inverse text-ellipsis" style="font-weight: 800">
                             Favourite Weapons
                         </a>
-                        <a class="list-group-item list-group-item-inverse text-ellipsis" ng-repeat="weapon in pWeapons | limitTo : 7">
+                        <a class="list-group-item list-group-item-inverse text-ellipsis" ng-repeat="weapon in pWeapons | limitTo : 6">
                             {{weapon.count}} - {{weapon.name}}
                         </a>
                     </div>
@@ -53,10 +53,6 @@
                 <div class="chart-number">
                     {{thePlayer.killsData.length}}
                     <small>Kills</small>
-                </div>
-                <div class="chart-number">
-                    {{thePlayer.bots}}
-                    <small>AI</small>
                 </div>
                 <div class="chart-number">
                     {{thePlayer.killedData.length}}
@@ -126,7 +122,7 @@
             </div>
             <div class="alert alert-info fade in">
                 <i class="fa fa-globe fa-2x pull-left"></i>
-                <p>The player his kills.
+                <p>The player his deaths.
                 </p>
             </div>
             <div class="panel-body panel-form">

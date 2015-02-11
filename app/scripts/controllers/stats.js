@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the zepochRedisApp
  */
-ERDBM
+ZupaStats
   .controller('StatsCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
         $(".nav li").removeClass("active");
         $("#stats").addClass("active");
@@ -28,12 +28,14 @@ ERDBM
             $location.path(where);
         }
 
-        MC.weaponsTop = []
+        MC.weaponsTop = [];
         MC.kdrTop = [];
         MC.killsTop = [];
+        MC.killsTop7 = [];
+        MC.kdTop7 = [];
 
 
-        RS.$watch('players4', function() {
+        RS.$watch('players5', function() {
 
             refreshStats();
         });
@@ -70,7 +72,7 @@ ERDBM
                 stats.value = value.kd;
                 stats.color = RS.getRandomColor();
                 stats.highlight = "#aaa";
-                stats.label = value.names[0]  + ' : ' + value.killsData.length;
+                stats.label = value.names[0];
                 MC.tempDate.push(stats);
                 counter++;
             };
@@ -97,6 +99,45 @@ ERDBM
         });
 
         MC.killsTop = MC.tempDate;
+
+
+            MC.tempDate = [];
+
+            counter = 0
+
+            angular.forEach(RS.players6, function (value, key) {
+
+                if( counter < 5) {
+                    var stats = {};
+                    stats.value = value.killsData7Days.length;
+                    stats.color = RS.getRandomColor();
+                    stats.highlight = "#aaa";
+                    stats.label = value.names[0];
+                    MC.tempDate.push(stats);
+                    counter++;
+                };
+            });
+
+            MC.killsTop7 = MC.tempDate;
+
+            MC.tempDate = [];
+
+            counter = 0
+
+            angular.forEach(RS.players5, function (value, key) {
+
+                if( counter < 5) {
+                    var stats = {};
+                    stats.value = value.kd7;
+                    stats.color = RS.getRandomColor();
+                    stats.highlight = "#aaa";
+                    stats.label = value.names[0];
+                    MC.tempDate.push(stats);
+                    counter++;
+                };
+            });
+
+            MC.kdTop7 = MC.tempDate;
 
         }
 

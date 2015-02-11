@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the zepochRedisApp
  */
-ERDBM
+ZupaStats
   .controller('PlayersCtrl',["$scope","$rootScope","$location","$http", function ($scope,$rootScope,$location,$http) {
         $(".nav li").removeClass("active");
         $("#players").addClass("active");

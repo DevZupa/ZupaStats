@@ -12,4 +12,4 @@ ini_set('display_errors',0);
 
 require 'config.php';
 
-echo json_encode($dl);
+echo $serverlist;

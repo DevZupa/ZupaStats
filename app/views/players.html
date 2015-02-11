@@ -37,7 +37,6 @@
                         <th>Kills</th>
                         <th>Last Name</th>
                         <th>Deaths</th>
-                        <th>AI</th>
                         <th>KDR</th>
                     </tr>
                     <tr dir-paginate="player in players4 | filter:search | itemsPerPage: pageSize" current-page="currentPage">
@@ -46,7 +45,6 @@
                         <td>{{player.killsData.length}}</td>
                         <td>{{player.names[0]}}</td>
                         <td>{{player.killedData.length}}</td>
-                        <td>{{player.bots}}</td>
                         <td>{{player.kd}}</td>
                     </tr>
                 </table>
