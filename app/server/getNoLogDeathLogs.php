@@ -52,7 +52,7 @@ foreach($deathlogs2  as  $log){
     if($result['killerpuid'] == null || $result['killerpuid'] == "" )
         $result['killerpuid'] = "AI";
 
-    $exploded3[1] = str_replace(" killed ","",$exploded3[1]);
+    $exploded3[1] = str_replace("killed ","",$exploded3[1]);
 
     $exploded4 = explode(" (",$exploded3[1],2);
 
@@ -65,7 +65,7 @@ foreach($deathlogs2  as  $log){
     if($result['killedpuid'] == null || $result['killedpuid'] == "" )
         $result['killedname'] = "AI";
 
-    $exploded5[1] = str_replace(" with weapon","",$exploded5[1]);
+    $exploded5[1] = str_replace("with weapon","",$exploded5[1]);
 
     $result['weapon'] = trim($exploded5[1]);
 
