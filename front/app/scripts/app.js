@@ -54,7 +54,7 @@ var ZupaStats = angular
         })
         .when('/admin', {
             templateUrl: 'views/admin.html',
-            controller: 'Admintrl'
+            controller: 'AdminCtrl'
         })
         .otherwise({
             redirectTo: '/'
@@ -77,7 +77,7 @@ ZupaStats.run(['$rootScope','$location','$http',
         globalScope.players5 = [];
         globalScope.players6 = [];
         globalScope.data = [];
-        globalScope.serverURL = 'server/';
+        globalScope.serverURL = 'http://localhost:9002/git/ZupaStats/laravel/zupastats';
         globalScope.servers = [];
         globalScope.angular = 'Zupa';
         globalScope.version = '2.0';

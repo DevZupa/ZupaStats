@@ -301,3 +301,47 @@ h1, h2, h3, h4, h5, h6 {
   -moz-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
 }
+
+.form-horizontal.form-bordered .form-group {
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+.form-horizontal.form-bordered .form-group>.control-label {
+  border-right: 1px solid #eee;
+  margin-right: -1px;
+}
+
+.form-horizontal.form-bordered .form-group>.control-label {
+  padding: 22px 15px 15px;
+}
+
+.form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-horizontal.form-bordered .form-group>div {
+  padding: 15px;
+  border-left: 1px solid #eee;
+}

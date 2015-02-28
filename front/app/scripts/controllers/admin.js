@@ -19,6 +19,23 @@ ZupaStats
 
         MC.selectServer = selectServer;
 
+        MC.settings = [];
+
+        MC.getSettings = getSettings;
+
+        MC.password = "";
+
+        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+        function getSettings(){
+            $http.post(globalScope.serverURL + '/public/index.php/settings',{"password" : MC.password }).
+                success(function(data, status, headers, config) {
+                    MC.settings = data;
+                }).error(function(error){
+                    alert("No server connection or wrong password.");
+                });
+        }
+
 
 
 
