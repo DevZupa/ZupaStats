@@ -19,6 +19,8 @@ class CreateServers extends Migration {
       $table->string('redispassword');
       $table->string('redisdatabase');
       $table->string('redisinstance');
+      $table->string('startdate');
+        $table->timestamps();
     });
   }
 

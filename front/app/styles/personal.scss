@@ -1,0 +1,303 @@
+$main-color-1: #fff;
+$main-color-2: #2d353c;
+$main-color-3: #1a2229;
+
+$small-color: #889097;
+
+$logo-color-1: #4DCACA;
+$logo-color-2: #31A3A3;
+$logo-color-3: #1D8888;
+
+$active-menu-color: #00acac;
+$menu-text-color: #a8acb1;
+
+$brand-color : #777;
+
+$background-color: #d9e0e7;
+
+$panel-header-color: #242a30;
+$panel-title-color: #fff;
+
+$info-background-color: #93cfe5;
+$info-text-color: #31708f;
+$info-border-color: #bce8f1;
+
+$btn-background: #5bc0de;
+$btn-border: #46b8da;
+
+$tab-background-color: #c1ccd1;
+
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: $background-color;
+  font-size: 12px;
+  color: #707478;
+}
+
+.navbar{
+  border-color: #e7e7e7;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 0 2px rgba(0,0,0,.3);
+  box-shadow: 0 0 2px rgba(0,0,0,.3);
+  &.navbar-default {
+    background: $main-color-1;
+  }
+}
+
+.navbar-fixed-top {
+  top: 0;
+  border-width: 0 0 1px;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 200;
+  -webkit-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+small, .small {
+  font-size: 85%;
+}
+
+.page-sidebar-fixed .sidebar {
+  position: fixed;
+}
+.sidebar {
+  width: 220px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-top: 54px;
+  background: $main-color-2;
+  z-index: 10;
+  i {
+    margin-right: 10px;
+    width:16px;
+    height:16px;
+  }
+  .nav>li.nav-header {
+    margin: 0;
+    padding: 10px 20px;
+    line-height: 20px;
+    font-size: 11px;
+    color: #6d7983;
+  }
+  .nav>li.nav-profile {
+    padding: 20px;
+    color: #fff;
+    background: $main-color-3;
+    .image {
+      float: left;
+      width: 34px;
+      height: 34px;
+      margin-top: 2px;
+      margin-right: 15px;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .info {
+      font-size: 14px;
+    }
+    .info small {
+      display: block;
+      color: $small-color;
+    }
+  }
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  li {
+    position: relative;
+    display: block;
+  }
+}
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.navbar-right{
+  float:right;
+  top:0;
+}
+
+.navbar-brand {
+  margin-right: 10px;
+  padding: 12px 10px;
+  height: 54px;
+  width: 220px;
+  font-weight: 100;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.navbar-default .navbar-brand {
+  color: #333;
+  font-weight: 100;
+}
+
+.navbar-brand{
+  color: $brand-color !important;
+}
+.navbar-brand:hover{
+  color: $brand-color !important;
+}
+
+:before, :after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical>.btn-group:before, .btn-group-vertical>.btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+  display: table;
+  content: " ";
+}
+
+.navbar-logo {
+  float: left;
+  margin-right: 10px;
+  margin-top: 5px;
+  border: 10px solid transparent;
+  border-color:  $logo-color-1 $logo-color-2 $logo-color-3 $logo-color-2;
+  opacity: .9;
+  filter: alpha(opacity=90);
+}
+
+.btn.btn-inverse {
+  color: #fff;
+  background: #2d353c;
+  border-color: #2d353c;
+  font-weight: 100;
+}
+
+.btn {
+  font-weight: 300;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
+  color: #fff;
+  background: $active-menu-color;
+}
+
+.sidebar .nav>li>a {
+  padding: 8px 20px;
+  line-height: 20px;
+  color: $menu-text-color;
+  font-size: 12px;
+  height: 36px;
+  &:hover{
+    background-color:$main-color-3;
+  }
+}
+
+.content {
+  margin-left: 220px;
+  padding: 20px 25px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  color: #242a30;
+}
+
+.page-header {
+  font-size: 24px;
+  margin: 0 0 20px;
+  padding: 0;
+  padding-top:20px;
+  border: none;
+  line-height: 28px;
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+}
+
+.panel {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.panel-inverse>.panel-heading {
+  background: $panel-header-color;
+}
+
+.panel-inverse > .panel-heading .panel-title {
+  color : $panel-title-color;
+  font-size: 14px;
+}
+
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.panel-body.no-padding, .panel-body.panel-form, .panel-body.panel-full-width, .panel-body.panel-table {
+  padding: 0!important;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.panel-heading+.alert {
+  margin-bottom: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.alert{
+  background-color: $info-background-color;
+  color: $info-text-color;
+  border-color: $info-border-color;
+}
+
+.btn-info {
+  background-color: $btn-background;
+  border-color: $btn-border;
+}
+
+.nav-tabs {
+  background: $tab-background-color;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}

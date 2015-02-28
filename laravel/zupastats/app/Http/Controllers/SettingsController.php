@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Setting;
-use App\Permission;
+use Input;
 
 class SettingsController extends Controller  {
 
@@ -12,6 +12,19 @@ class SettingsController extends Controller  {
 
   public function getSettings()
   {
+    $password = Input::get('password', '...............');
+
     return response()->json(Setting::all());
+  }
+
+  public function saveSettings(){
+
+      $password = Input::get('password', '...............');
+
+      $data = json_decode(Input::get('data', '[]'));
+
+      $response = [ "message" => "Success"];
+
+      return response()->json($response);
   }
 }

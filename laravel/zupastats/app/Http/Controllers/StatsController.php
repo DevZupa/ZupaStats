@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Setting;
+use Redis;
+use Request;
+use DB;
 
 class StatsController extends Controller {
 
@@ -11,8 +14,8 @@ class StatsController extends Controller {
 
   public function getStats()
   {
-    $settings = Setting::all();
-
+    $showPuid = DB::table('settings')->where('code', 'show_puid')->pluck('value');
+    $showAI = DB::table('settings')->where('code', 'show_ai_kills')->pluck('value');
 
     $client = Redis::connection();
 
@@ -20,6 +23,8 @@ class StatsController extends Controller {
     $deathlogs2 = $client-> lrange('deathlog-LOG', 0, $deathlogslength);
 
     $dl = [];
+
+    $puids = [];
 
     foreach($deathlogs2  as  $log){
 
@@ -37,8 +42,17 @@ class StatsController extends Controller {
 
       $result['killerpuid'] = trim($exploded3[0]);
 
-      if($result['killerpuid'] == null || $result['killerpuid'] == "" )
-        $result['killerpuid'] = "AI";
+      if($result['killerpuid'] == null || $result['killerpuid'] == "" ){
+        $result['killername'] = "AI";
+      }else{
+        if($showPuid != 1){
+           if(!array_key_exists ( $result['killerpuid'] , $puids )){
+               $puids[$result['killerpuid']] =  count($puids) + 1;
+           }
+            $index = $result['killerpuid'];
+            $result['killerpuid'] = $puids[$index];
+        }
+      }
 
       $exploded3[1] = str_replace("killed ","",$exploded3[1]);
 
@@ -50,16 +64,31 @@ class StatsController extends Controller {
 
       $result['killedpuid'] = trim($exploded5[0]);
 
-      if($result['killedpuid'] == null || $result['killedpuid'] == "" )
+      if($result['killedpuid'] == null || $result['killedpuid'] == "" ){
         $result['killedname'] = "AI";
+      }else{
+        if($showPuid != 1){
+          if(!array_key_exists ( $result['killedpuid'] , $puids )){
+              $puids[$result['killedpuid']] = count($puids) + 1;
+          }
+          $result['killedpuid'] = $puids[$result['killedpuid']];
+        }
+      }
 
       $exploded5[1] = str_replace("with weapon","",$exploded5[1]);
 
       $result['weapon'] = trim($exploded5[1]);
 
-      array_push($dl,$result);
+       if($showAI != 1){
+            if( $result['killedname'] != "AI" &&  $result['killername'] != "AI"){
+                array_push($dl,$result);
+            }
+       }else{
+            array_push($dl,$result);
+       }
     }
-    return response()->json($dl);
+   return response()->json($dl);
+
   }
 
 }

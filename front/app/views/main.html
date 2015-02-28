@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">Server list. <small> Select a server </small></h1>
+    </div>
+</div>
+<div class="row">
+    <ul class="result-list" title="">
+        <li ng-repeat="server in servers">
+            <div class="result-image" style="float:left">
+              <img ng-src="images/{{server.map}}.png">
+            </div>
+            <div class="result-info" style="float:left">
+                <h4 class="title"><a href="javascript:;">{{server.name}}</a></h4>
+                <p class="location">{{server.map}}</p>
+                <p class="desc">
+                   {{server.descr}}
+                </p>
+                <div class="btn-row">
+                    <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Analytics" data-original-title="" title=""><i class="fa fa-fw fa-bar-chart-o"></i></a>
+                    <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Tasks" data-original-title="" title=""><i class="fa fa-fw fa-tasks"></i></a>
+                    <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Configuration" data-original-title="" title=""><i class="fa fa-fw fa-cog"></i></a>
+                    <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Performance" data-original-title="" title=""><i class="fa fa-fw fa-tachometer"></i></a>
+                    <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Users" data-original-title="" title=""><i class="fa fa-fw fa-user"></i></a>
+                </div>
+            </div>
+            <div class="result-price" style="float:right">
+                <a ng-click="selectServer($index)" class="btn btn-inverse btn-block">Select Server</a>
+            </div>
+        </li>
+    </ul>
+</div>

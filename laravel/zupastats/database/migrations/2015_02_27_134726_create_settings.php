@@ -14,6 +14,7 @@ class CreateSettings extends Migration {
       $table->string('description');
       $table->string('value');
       $table->string('type');
+        $table->timestamps();
     });
   }
 

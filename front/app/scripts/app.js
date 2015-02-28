@@ -1,34 +1,34 @@
 'use strict';
+
 /**
  * @ngdoc overview
- * @name zepochRedisApp
+ * @name zupastatsApp
  * @description
- * # zepochRedisApp
+ * # zupastatsApp
  *
  * Main module of the application.
  */
 var ZupaStats = angular
-  .module('ZupaStats', [
+  .module('zupastatsApp', [
     'ngAnimate',
+    'ngAria',
     'ngCookies',
+    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'angularLocalStorage',
     'ui.bootstrap',
     'angularUtils.directives.dirPagination',
-        'toaster',
-        'tc.chartjs',
-        ''
-  ]);
-ZupaStats.config(["$routeProvider",function ($routeProvider) {
+    'chart.js'
+  ])
+  .config(['$routeProvider',function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-       .when('/servers', {
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+        })
+        .when('/servers', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'
         })
@@ -52,15 +52,20 @@ ZupaStats.config(["$routeProvider",function ($routeProvider) {
             templateUrl: 'views/stats.html',
             controller: 'StatsCtrl'
         })
-      .otherwise({
-        redirectTo: '/'
-      });
-  }]);
+        .when('/admin', {
+            templateUrl: 'views/admin.html',
+            controller: 'Admintrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 
-ZupaStats.run(["$rootScope","storage","$location","$http","Data",
-    function($rootScope,storage,$location,$http,Data) {
+}]);
+
+ZupaStats.run(['$rootScope','$location','$http',
+    function($rootScope,$location,$http) {
         var globalScope = $rootScope;
-        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         globalScope.players = [];
         globalScope.weapons = [];
         globalScope.weapons3 = [];
@@ -72,11 +77,11 @@ ZupaStats.run(["$rootScope","storage","$location","$http","Data",
         globalScope.players5 = [];
         globalScope.players6 = [];
         globalScope.data = [];
-        globalScope.serverURL = "server/";
+        globalScope.serverURL = 'server/';
         globalScope.servers = [];
-        globalScope.angular = "Zupa";
-        globalScope.version = "1.0";
-        globalScope.communnity = "";
+        globalScope.angular = 'Zupa';
+        globalScope.version = '2.0';
+        globalScope.communnity = '';
         globalScope.selectedServer =  {};
 
         $http.post(globalScope.serverURL + 'getServers.php?date='+ new Date().getTime(),{"db" : globalScope.selectedServer.dbi }).
@@ -102,14 +107,14 @@ ZupaStats.run(["$rootScope","storage","$location","$http","Data",
         }
         function getData(){
             globalScope.loadingData = true;
-        $http.post(globalScope.serverURL + 'getNoLogDeathLogs.php?date='+ new Date().getTime(),{"db" : globalScope.selectedServer.dbi }).
-            success(function(data, status, headers, config) {
-                globalScope.data = data;
-                unEpochorize(data);
+            $http.post(globalScope.serverURL + 'getNoLogDeathLogs.php?date='+ new Date().getTime(),{"db" : globalScope.selectedServer.dbi }).
+                success(function(data, status, headers, config) {
+                    globalScope.data = data;
+                    unEpochorize(data);
 
-            }).error(function(error){
-                globalScope.loadingData = false;
-            });
+                }).error(function(error){
+                    globalScope.loadingData = false;
+                });
         }
         globalScope.unEpochorize = unEpochorize;
 
@@ -222,7 +227,7 @@ ZupaStats.run(["$rootScope","storage","$location","$http","Data",
             globalScope.players2.sort(compareKills7);
 
             angular.forEach(globalScope.players2, function (value, key) {
-                    globalScope.players6.push(value);
+                globalScope.players6.push(value);
             });
 
 
@@ -320,47 +325,6 @@ ZupaStats.run(["$rootScope","storage","$location","$http","Data",
         }
 
 
-    }]);
-
-ZupaStats.factory("Data", ['$http', 'toaster',
-    function ($http, toaster) { // This service connects to our REST API
-
-        var serviceBase = 'server/';
-
-        var obj = {};
-        obj.toast = function (data) {
-            toaster.pop(data.status, "", data.message, 10000, 'trustedHtml');
-        }
-        obj.get = function (q) {
-            return $http.get(serviceBase + q).then(function (results) {
-                return results.data;
-            },function(results){
-                return {};
-            });
-        };
-        obj.post = function (q, object) {
-            return $http.post(serviceBase + q, object).then(function (results) {
-                return results.data;
-            },function(results){
-                return {};
-            });
-        };
-        obj.put = function (q, object) {
-            return $http.put(serviceBase + q, object).then(function (results) {
-                return results.data;
-            },function(results){
-                return {};
-            });
-        };
-        obj.delete = function (q) {
-            return $http.delete(serviceBase + q).then(function (results) {
-                return results.data;
-            },function(results){
-                return {};
-            });
-        };
-
-        return obj;
     }]);
 
 ZupaStats.directive('focus', function() {

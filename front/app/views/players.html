@@ -1,0 +1,95 @@
+<div class="row">
+<div class="col-md-12">
+        <h1 class="page-header">Player <small> {{$parent.selectedServer.name}} </small></h1>
+    </div>
+</div>
+<tabset>
+    <tab heading="Kill Death Ratio">
+        <div class="panel panel-inverse" style="margin-bottom:0;">
+            <div class="panel-heading">
+                <form class="form-inline">
+                    <h4 class="panel-title">{{players4.length}} Players
+                        <div class="form-group m-r-10">
+                            <input type="search" class="form-control input-sm" ng-model="search"  placeholder="filter" style="margin-left:10px;">
+                            <input type="number" class="form-control input-sm" ng-model="pageSize"  placeholder="pagesize" style="margin-left:10px;" min="1" max="200">
+                        </div>
+                        <i class="fa fa-spinner fa-2x fa-spin" ng-show="loadingData"></i>  <span ng-show="loadingData">Loading data.</span>
+                    </h4>
+                </form>
+            </div>
+            <div class="alert alert-info fade in">
+                <i class="fa fa-globe fa-2x pull-left"></i>
+                <p>Server is up since 01-01-2015. You need 20 kills or more to qualify for KDR rankings.
+                </p>
+            </div>
+            <div class="panel-body panel-form">
+                <table class="table-striped table">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Puid</th>
+                        <th>Kills</th>
+                        <th>Last Name</th>
+                        <th>Deaths</th>
+                        <th>KDR</th>
+                    </tr>
+                    <tr dir-paginate="player in players4 | filter:search | itemsPerPage: pageSize" current-page="currentPage">
+                        <td>{{player.kdrank}}</td>
+                        <td><a ng-click="view('{{player.puid}}')" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{player.puid}}</a></td>
+                        <td>{{player.killsData.length}}</td>
+                        <td>{{player.names[0]}}</td>
+                        <td>{{player.killedData.length}}</td>
+                        <td>{{player.kd}}</td>
+                    </tr>
+                </table>
+                <div style="margin:auto;text-align: center">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </tab>
+   <tab heading="# Kills">
+       <div class="panel panel-inverse" style="margin-bottom:0;">
+            <div class="panel-heading">
+                <form class="form-inline">
+                    <h4 class="panel-title">{{players3.length}} Players
+                        <div class="form-group m-r-10">
+                            <input type="search" class="form-control input-sm" ng-model="search"  placeholder="filter" style="margin-left:10px;">
+                            <input type="number" class="form-control input-sm" ng-model="pageSize"  placeholder="pagesize" style="margin-left:10px;" min="1" max="200">
+                        </div>
+                        <i class="fa fa-spinner fa-2x fa-spin" ng-show="loadingData"></i>  <span ng-show="loadingData">Loading data.</span>
+                    </h4>
+                </form>
+            </div>
+            <div class="alert alert-info fade in">
+                <i class="fa fa-globe fa-2x pull-left"></i>
+                <p>Server is up since 01-01-2015.
+                </p>
+            </div>
+            <div class="panel-body panel-form">
+                <table class="table-striped table">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Puid</th>
+                        <th>Kills</th>
+                        <th>Last Name</th>
+                        <th>Deaths</th>
+                        <th>AI</th>
+                        <th>KDR</th>
+                    </tr>
+                    <tr dir-paginate="player in players3 | filter:search | itemsPerPage: pageSize" current-page="currentPage">
+                        <td>{{player.rank}}</td>
+                        <td><a ng-click="view('{{player.puid}}')" class="btn btn-info btn-xs m-r-5"><i class="fa fa-user"></i> {{player.puid}}</a></td>
+                        <td>{{player.killsData.length}}</td>
+                        <td>{{player.names[0]}}</td>
+                        <td>{{player.killedData.length}}</td>
+                        <td>{{player.bots}}</td>
+                        <td>{{player.killsData.length / player.killedData.length}}</td>
+                    </tr>
+                </table>
+                <div style="margin:auto;text-align: center">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </tab>
+</tabset>

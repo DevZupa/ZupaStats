@@ -48,7 +48,7 @@ return [
 
 		'sqlite' => [
 			'driver'   => 'sqlite',
-			'database' => storage_path().'/databases/zupastats',
+			'database' => storage_path().'/databases/zupastats.sqlite',
 			'prefix'   => '',
 		],
 
@@ -116,8 +116,9 @@ return [
 
 		'default' => [
 			'host'     => '127.0.0.1',
+            'password' => 'zupa4ever',
 			'port'     => 6379,
-			'database' => 0,
+			'database' => 1,
 		],
 
 	],

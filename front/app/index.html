@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/personal.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="zupastatsApp">
+  <div id="page-container" class="page-sidebar-fixed page-header-fixed">
+      <div id="header" class="header navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+              <div class="navbar-header">
+                  <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> {{angular}} Stats {{version}}</a>
+                  <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+              </div>
+              <a class="btn btn-inverse" ng-click="getData()" style="margin-top:10px;">Refresh Data</a>
+          </div>
+      </div>
+      <div id="sidebar" class="sidebar">
+          <div data-scrollbar="true" data-height="100%">
+              <ul class="nav">
+                  <li class="nav-profile">
+                      <div class="image">
+                          <img src="http://epochmod.com/epoch_logo.png" alt="" />
+                      </div>
+                      <div class="info">
+                          {{angular}}
+                          <small>Developments</small>
+                      </div>
+                  </li>
+              </ul>
+              <ul class="nav">
+                  <li class="nav-header">{{communnity}}</li>
+                  <li id="servers"><a href="#/"><i class="fa fa-database"></i> <span>Servers</span></a></li>
+                  <li id="stats"><a href="#/stats"><i class="fa  fa-area-chart"></i> <span>Stats</span></a></li>
+                  <li id="kills"><a href="#/kills"><i class="fa fa-heart"></i> <span>Kills</span></a></li>
+                  <li id="weapons"><a href="#/weapons"><i class="fa fa-fighter-jet"></i> <span>Weapons </span></a></li>
+                  <li id="players"><a href="#/players"><i class="fa fa-group"></i> <span>Players </span></a></li>
+              </ul>
+          </div>
+      </div>
+      <div id="content" class="content">
+          <div ng-view=""></div>
+      </div>
+    </div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/kills.js"></script>
+    <script src="scripts/controllers/player.js"></script>
+    <script src="scripts/controllers/players.js"></script>
+    <script src="scripts/controllers/stats.js"></script>
+    <script src="scripts/controllers/weapons.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
