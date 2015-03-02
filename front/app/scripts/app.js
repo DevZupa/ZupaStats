@@ -84,7 +84,7 @@ ZupaStats.run(['$rootScope','$location','$http',
         globalScope.communnity = '';
         globalScope.selectedServer =  {};
 
-        $http.post(globalScope.serverURL + 'getServers.php?date='+ new Date().getTime(),{"db" : globalScope.selectedServer.dbi }).
+        $http.post(globalScope.serverURL + '/public/index.php/servers').
             success(function(data, status, headers, config) {
                 globalScope.servers = data;
                 globalScope.selectedServer =  globalScope.servers[0];
@@ -107,7 +107,7 @@ ZupaStats.run(['$rootScope','$location','$http',
         }
         function getData(){
             globalScope.loadingData = true;
-            $http.post(globalScope.serverURL + 'getNoLogDeathLogs.php?date='+ new Date().getTime(),{"db" : globalScope.selectedServer.dbi }).
+            $http.post(globalScope.serverURL + '/public/index.php/stats',{"db" : globalScope.selectedServer.dbi }).
                 success(function(data, status, headers, config) {
                     globalScope.data = data;
                     unEpochorize(data);

@@ -13,14 +13,27 @@ class SettingsController extends Controller  {
 
   public function getSettings()
   {
-    $password = Input::get('password', '...............');
-    $adminpass =  DB::table('users')->where('name', 'Admin')->pluck('password');
-      $data = ['Wrong password'];
-      if($password == $adminpass){
-          $data = Setting::all();
-      }
+    $data = Setting::all();
     return response()->json($data);
   }
+
+    public function getServers()
+    {
+        $data = Server::all();
+        return response()->json($data);
+    }
+
+    public function getPublicServers()
+    {
+        $password = Input::get('password', '...............');
+        $adminpass =  DB::table('users')->where('name', 'Admin')->pluck('password');
+        $data = ['Wrong password'];
+        if($password == $adminpass){
+            $data = PServer::all();
+        }
+
+        return response()->json($data);
+    }
 
   public function savePassword()
   {
@@ -42,7 +55,7 @@ class SettingsController extends Controller  {
       if($password == $adminpass){
           $data = json_decode(Input::get('data', '[]'));
           foreach($data as $item){
-              $affectedRows = Setting::where('code', '=', $item.code)->update(array('value' => $item.value));
+              Setting::where('code', '=', $item.code)->update(array('value' => $item.value));
           }
           $response = [ "message" => "Success"];
       }
